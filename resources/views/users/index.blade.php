@@ -29,7 +29,7 @@
                     {{ session("status") }}
                 </div>
             @endif
-    <table class="table table-borderless table-hover">
+    <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>No</th>
