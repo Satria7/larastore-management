@@ -15,11 +15,11 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                       <label for="name">Full Name</label>
-                      <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}">
+                      <input type="text" class="form-control {{ $errors->first('name') ? 'is-invalid' : '' }}" name="name" id="name" value="{{ $user->name }}">
                     </div>
                     <div class="form-group">
                       <label for="username">Username</label>
-                      <input type="text" class="form-control" name="username" id="username" value="{{ $user->username }}">
+                      <input type="text" class="form-control {{ $errors->first('username') ? 'is-invalid' : '' }}" name="username" id="username" value="{{ $user->username }}">
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
@@ -53,11 +53,11 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="number" class="form-control" name="phone" id="phone" value="{{ $user->phone }}">
+                        <input type="number" class="form-control {{ $errors->first('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="{{ $user->phone }}">
                     </div>
                     <div class="form-group">
                       <label for="address">Address</label>
-                      <textarea class="form-control" name="address" id="address" rows="2">{{ $user->address }}</textarea>
+                      <textarea class="form-control {{ $errors->first('address') ? 'is-invalid' : '' }}" name="address" id="address" rows="2">{{ $user->address }}</textarea>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group">
                       <label for="email">E-mail Address</label>
-                      <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}">
+                      <input type="email" class="form-control {{ $errors->first('email') ? 'is-invalid' : '' }}" name="email" id="email" value="{{ $user->email }}">
                     </div>
                     <hr>
                     <div class="form-group">
