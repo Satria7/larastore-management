@@ -11,9 +11,15 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = \App\Book::with('categories')->paginate(10);
+        $status = $request->get("status");
+        $keyword = $request->get("keyword") ? $request->get("keyword") : '';
+        if ($status) {
+            $books = \App\Book::with('categories')->where('title', 'LIKE', "%$keyword%")->where('status', strtoupper($status))->paginate(10);
+        } else {
+            $books = \App\Book::with('categories')->where('title', 'LIKE', "%%$keyword")->paginate(10);
+        }
         return view('books.index', compact('books'));
     }
 
@@ -59,16 +65,6 @@ class BookController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -123,6 +119,40 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = \App\Book::findOrFail($id);
+        $book->delete();
+        return redirect()->route("books.index")->with("status", "Book Moved to trash");
+    }
+
+    // trash
+    public function trash()
+    {
+        $books = \App\Book::onlyTrashed()->paginate(10);
+        return view("books.trash", compact("books"));
+    }
+
+    // restore method | created by Muhammad Kuswari
+    public function restore($id)
+    {
+        $book = \App\Book::withTrashed()->findOrFail($id);
+        if ($book->trashed()) {
+            $book->restore();
+            return redirect()->route("books.index")->with("status", "Book succesfully restored");
+        } else {
+            return redirect()->route("books.index")->with("status", "Book is not in trash");
+        }
+    }
+
+    // delete permanent method | created by Muhammad Kuswari
+    public function deletePermanent($id)
+    {
+        $book = \App\Book::withTrashed()->findOrFail($id);
+        if (!$book->trashed()) {
+            return redirect()->route("books.trash")->with("status", "Book is not on trash")->with('status_type', 'alert');
+        } else {
+            $book->categories()->detach();
+            $book->forceDelete();
+            return redirect()->route("books.trash")->with("status", "Book Permanenlty deleted");
+        }
     }
 }

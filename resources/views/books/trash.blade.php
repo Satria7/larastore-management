@@ -72,11 +72,14 @@
                 <td>{{ $book->stock }}</td>
                 <td>{{ $book->price }}</td>
                 <td>
-                    <a href="{{ route("books.edit", [$book->id]) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route("books.destroy", [$book->id]) }}" method="post" class="d-inline" onsubmit="return confirm('Move this Book to Trash?')">
-                    @csrf
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger btn-sm">Trash</button>
+                    <form action="{{ route("books.restore", [$book->id]) }}" method="post" class="d-inline" onsubmit="return confirm('Restore this book?')">
+                        @csrf
+                        <button type="submit" class="btn btn-success btn-sm">Restore</button>
+                    </form>
+                    <form action="{{ route("books.delete-permanent", [$book->id]) }}" method="post" class="d-inline" onsubmit="return confirm('Move this Book to Trash?')">
+                        @csrf
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </td>
             </tr>
