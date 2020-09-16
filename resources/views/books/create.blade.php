@@ -18,15 +18,24 @@
                         @csrf
                         <div class="form-group">
                           <label for="title">Book Title</label>
-                          <input type="text" name="title" id="title" class="form-control">
+                          <input type="text" name="title" id="title" class="form-control {{ $errors->first('title') ? 'is-invalid' : '' }}">
+                          <span class="invalid-feedback">
+                              {{ $errors->first('title') }}
+                          </span>
                         </div>
                         <div class="form-group">
                           <label for="cover">Book Cover</label>
-                          <input type="file" class="form-control-file" name="cover" id="cover">
+                          <input type="file" class="form-control-file {{ $errors->first('cover') ? 'is-invalid' : '' }}" name="cover" id="cover">
+                          <span class="invalid-feedback">
+                              {{ $errors->first('cover') }}
+                          </span>
                         </div>
                         <div class="form-group">
                           <label for="description">Description</label>
-                          <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                          <textarea class="form-control {{ $errors->first('description') }}" name="description" id="description" rows="3"></textarea>
+                          <span class="invalid-feedback">
+                              {{ $errors->first('description') }}
+                          </span>
                         </div>
                         <div class="form-group">
                             <label for="categories">Categories</label>
@@ -34,19 +43,31 @@
                         </div>
                         <div class="form-group">
                             <label for="stock">Stock</label>
-                            <input type="number" class="form-control" name="stock" id="stock">
+                            <input type="number" class="form-control {{ $errors->first('stock') ? 'is-invalid' : '' }}" name="stock" id="stock">
+                            <span class="invalid-feedback">
+                                {{ $errors->first('stock') }}
+                            </span>
                         </div>
                         <div class="form-group">
                           <label for="author">Author</label>
-                          <input type="text" name="author" id="author" class="form-control">
+                          <input type="text" name="author" id="author" class="form-control {{ $errors->first('author') ? 'is-invalid' : '' }}">
+                          <span class="invalid-feedback">
+                              {{ $errors->first('author') }}
+                          </span>
                         </div>
                         <div class="form-group">
                           <label for="publisher">Publisher</label>
-                          <input type="text" name="publisher" id="publisher" class="form-control">
+                          <input type="text" name="publisher" id="publisher" class="form-control {{ $errors->first('publisher') ? 'is-invalid' : '' }}">
+                          <span class="invalid-feedback">
+                              {{ $errors->first('publisher') }}
+                          </span>
                         </div>
                         <div class="form-group">
                             <label for="price">Book Price</label>
-                            <input type="number" name="price" id="price" class="form-control">
+                            <input type="number" name="price" id="price" class="form-control {{ $errors->first('price') ? 'is-invalid' : '' }}">
+                            <span class="invalid-feedback">
+                                {{ $errors->first('price') }}
+                            </span>
                         </div>
                         <hr>
                         <div class="form-acton">

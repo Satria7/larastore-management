@@ -20,11 +20,17 @@
                 @csrf
                 <div class="form-group">
                   <label for="name">Category Name</label>
-                  <input type="text" name="name" id="name" class="form-control">
+                  <input type="text" name="name" id="name" class="form-control {{ $errors->first('name') ? 'is-invalid' : '' }}">
+                  <span class="invalid-feedback">
+                      {{ $errors->first('name') }}
+                  </span>
                 </div>
                 <div class="form-group">
                   <label for="image">Category Image</label>
-                  <input type="file" class="form-control-file" name="image" id="image">
+                  <input type="file" class="form-control-file {{ $errors->first('image') ? 'is-invalid' : '' }}" name="image" id="image">
+                  <span class="invalid-feedback">
+                      {{ $errors->first('avatar') }}
+                  </span>
                 </div>
                 <hr>
                 <div class="form-action">
