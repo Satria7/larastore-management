@@ -145,6 +145,7 @@ class CategoryController extends Controller
     // delete permanent
     public function deletePermanent($id)
     {
+
         $category = \App\Category::withTrashed()->findOrFail($id);
         if (!$category->trashed()) {
             return redirect()->route("categories.index")->with("status", "Can't delete permanent active category");
@@ -152,5 +153,15 @@ class CategoryController extends Controller
             $category->forceDelete();
             return redirect()->route("categories.index")->with("status", "Category deleted permanently");
         }
+    }
+
+    // ajax search
+    public function ajaxSearch(Request $request)
+    {
+        $keyword = $request->get('q');
+
+        $categories = \App\Category::where("name", "LIKE", "%$keyword%")->get();
+
+        return $categories;
     }
 }

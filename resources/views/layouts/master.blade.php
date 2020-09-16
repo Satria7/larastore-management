@@ -59,6 +59,12 @@
             </a>
       </li>
 
+            <li class="nav-item">
+          <a class="nav-link" href="{{ route("books.index") }}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Manage Books</span>
+            </a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -212,6 +218,8 @@
   <!-- Page level custom scripts -->
   <script src="{{ asset("js/demo/chart-area-demo.js") }}"></script>
   <script src="{{ asset("js/demo/chart-pie-demo.js") }}"></script>
+
+  @yield('footer-scripts')
 
 </body>
 
