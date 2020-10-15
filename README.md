@@ -11,4 +11,4 @@ php artisan key:generate
 ```
 
 ## Screenshoot
-![alt text](public/screenshoot/02-dashboard.png)
+![alt text](public/img/screenshoot/02-dashboard.png)
